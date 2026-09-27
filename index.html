@@ -47,7 +47,7 @@ html[lang^="zh"] body{font-family:"Be Vietnam Pro","PingFang SC","Microsoft YaHe
     if(globalsOpen<0||viPos<0) throw new Error('Runtime bootstrap not found');
 
     let globalsBlock=raw.slice(globalsOpen+8,viPos);
-    const globalsClose=globalsBlock.lastIndexOf('</script>');
+    const globalsClose=globalsBlock.lastIndexOf('</scr'+'ipt>');
     if(globalsClose<0) throw new Error('Runtime bootstrap close not found');
     globalsBlock=globalsBlock.slice(0,globalsClose);
     (0,eval)(globalsBlock);
@@ -72,7 +72,7 @@ html[lang^="zh"] body{font-family:"Be Vietnam Pro","PingFang SC","Microsoft YaHe
     const ends={vi:raw.indexOf(enMarker),en:raw.indexOf(zhMarker),zh:raw.indexOf('<nav id="lang-switch"',starts.zh)};
     if(starts[lang]<markers[lang].length||ends[lang]<starts[lang])throw new Error('Language bundle not found');
     let code=raw.slice(starts[lang],ends[lang]);
-    const close=code.lastIndexOf('</script>');
+    const close=code.lastIndexOf('</scr'+'ipt>');
     if(close>=0)code=code.slice(0,close);
     if(!code.trim())throw new Error('Language bundle empty');
 
